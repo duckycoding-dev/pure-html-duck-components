@@ -1,0 +1,157 @@
+*{
+  box-sizing: border-box;
+  border: 0;
+  padding: 0;
+}
+
+:root{
+  background-color: rgb(32, 32, 32);
+  --duck-color: rgba(255, 230, 0);
+  --default-font-size: 16px;
+  --eye-animation-configs: 2s linear normal forwards infinite;
+}
+
+
+.duck {
+  font-size: var(--default-font-size);
+  background-color: white;
+  display: grid;
+  position: relative;
+  grid-template-columns: 1;
+  grid-template-rows: 1;
+  min-height: 200px;
+}
+
+
+.body{
+  background-color: var(--duck-color);
+  font-size: 3.5em;
+  width: 1em;
+  height: .6em;
+  border-radius: 50%;
+  grid-area: 4/4/4/4;
+  display: grid;
+  position: relative;
+}
+
+.head {
+  background-color: var(--duck-color);
+  font-size: .55em;
+  width: 1em;
+  height: .6em;
+  border-radius: 50%;
+  bottom: 0;
+  display: grid;
+  position: relative;
+  transform: translate(-20%, -.325em);
+}
+
+.beak {
+  font-size: .3em;
+  border-top: 1em solid transparent;
+  border-bottom: 1em solid transparent; 
+  border-right: 1em solid orange;
+  transform: translateX(-95%) scaleY(40%);
+}
+.beak::after{
+  content: '';
+  display: block;
+  width: 1em;
+  background-color: black;
+  height: .3px;
+  transform: translateX(235%);
+}
+
+@keyframes wink {
+  0% {  
+    width: .3em;
+    height: .175em;
+  }
+
+  15% {  
+    width: .3em;
+    height: .0em;
+  }
+
+  30% {  
+    width: .3em;
+    height: .175em;
+  }
+  
+  100% {  
+    width: .3em;
+    height: .175em;
+  }
+}
+
+.left-eye {  
+  background-color: white;
+  position: absolute;
+  border-radius: 70%;
+  overflow: hidden;
+  animation: var(--eye-animation-configs);
+  animation-name: wink;
+  transform: translate(80%, .15em);
+  border: .05px solid black;
+}
+
+@keyframes pupilwink {
+  0% {  
+    transform: translate(20%, 40%);
+  }
+
+  15% {  
+    transform: translate(20%, -15%);
+  }
+
+  30% {  
+    transform: translate(20%, 40%);
+  }
+
+  100% {  
+    transform: translate(20%, 40%);
+  }
+}
+
+.left-eye::after {
+  content: '';
+  width: .15em;
+  position: absolute;
+  height: .1em;
+  border-radius: 70%;
+  background-color: black;
+  animation: var(--eye-animation-configs);
+  animation-name: pupilwink;
+}
+
+
+@keyframes wingslap {
+  0% {transform: rotate(-15deg) skewX(30deg);}
+  100% {transform: rotate(0deg) skewX(0);}  
+}
+
+.wing {
+  transform-origin: left;
+  background-color: var(--duck-color);
+  border: .3px solid black;
+  width: .5em;
+  height: .2em;
+  border-radius: 40%;
+  justify-self: center;
+  align-self: center;
+  position: absolute;
+  animation-duration: 1s;
+  animation-timing-function: cubic-bezier();
+  animation-name: wingslap;
+  animation-direction: alternate;
+  animation-fill-mode: both;
+  animation-play-state: running;
+  animation-iteration-count: infinite;
+}
+
+.water{
+  font-size: var(--default-font-size);
+  background-color: aqua;
+  height: 20px;
+  transform: translateY(-3em);
+}
